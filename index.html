@@ -1,399 +1,144 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MF Higienização - Estofados e Automotiva no DF</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0056b3">
-  
-  <!-- Font Awesome para ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --primary: #0056b3;
-      --primary-dark: #003b7a;
-      --secondary: #25d366;
-      --secondary-hover: #1eb956;
-      --accent: #f39c12;
-      --dark: #1a252f;
-      --light: #f4f7f6;
-      --gray: #666;
-    }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-    body { background-color: var(--light); color: #333; line-height: 1.6; padding-bottom: 80px; }
-
-    header { 
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary)); 
-      color: white; 
-      text-align: center; 
-      padding: 45px 20px; 
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-    }
-    header h1 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 800; }
-    header p { font-size: 1.1rem; opacity: 0.95; max-width: 600px; margin: 0 auto 20px auto; }
-    .badge { background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; display: inline-block; }
-
-    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin: 30px 0; }
-    .feature-card { background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .feature-card i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
-    .feature-card h3 { color: var(--dark); margin-bottom: 8px; font-size: 1.1rem; }
-    .feature-card p { font-size: 0.9rem; color: var(--gray); }
-
-    .services { background: white; padding: 25px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .services h2 { color: var(--primary); text-align: center; margin-bottom: 20px; font-size: 1.5rem; }
-    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
-    .service-card { background: #eef5fc; padding: 18px 15px; border-radius: 10px; border-left: 4px solid var(--primary); text-align: center; }
-    .service-card i { font-size: 1.5rem; color: var(--primary); margin-bottom: 8px; }
-    .service-card h3 { font-size: 1rem; color: var(--dark); margin-bottom: 5px; }
-    .service-card .price { font-weight: bold; color: var(--secondary-hover); font-size: 1.05rem; }
-
-    .loyalty-card { background: linear-gradient(135deg, #fff9e6, #fff3cd); border: 2px dashed var(--accent); padding: 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
-    .loyalty-card i { font-size: 2.2rem; color: var(--accent); margin-bottom: 8px; }
-    .loyalty-card h3 { color: #856404; font-size: 1.3rem; margin-bottom: 5px; }
-    .loyalty-card p { color: #664d03; font-size: 0.95rem; margin-bottom: 10px; }
-    .loyalty-badge { display: inline-block; background: var(--accent); color: white; padding: 5px 15px; border-radius: 50px; font-weight: bold; font-size: 0.85rem; }
-
-    .gallery-section { background: white; padding: 25px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .gallery-section h2 { color: var(--primary); text-align: center; margin-bottom: 8px; font-size: 1.5rem; }
-    .gallery-sub { text-align: center; color: var(--gray); font-size: 0.9rem; margin-bottom: 20px; }
-    .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
-    .comparison-card { background: #f9f9f9; border-radius: 10px; overflow: hidden; border: 1px solid #eee; text-align: center; padding-bottom: 12px; }
-    .comparison-card img { width: 100%; height: 180px; object-fit: cover; }
-    .comparison-card h4 { margin: 10px 0 5px; color: var(--dark); }
-    .comparison-card p { font-size: 0.85rem; color: var(--gray); padding: 0 10px; }
-
-    .testimonials { background: white; padding: 25px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .testimonials h2 { color: var(--primary); text-align: center; margin-bottom: 20px; font-size: 1.5rem; }
-    .testimonial-card { background: #fdfdfd; border-left: 4px solid var(--secondary); padding: 15px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-    .testimonial-card p { font-style: italic; color: #444; font-size: 0.95rem; margin-bottom: 8px; }
-    .testimonial-card .author { font-weight: bold; color: var(--dark); font-size: 0.85rem; text-align: right; }
-    .stars { color: var(--accent); margin-bottom: 5px; }
-
-    .booking-section { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 5px solid var(--primary); }
-    .booking-section h2 { text-align: center; color: var(--primary); margin-bottom: 5px; }
-    .booking-section p.sub { text-align: center; color: var(--gray); margin-bottom: 25px; font-size: 0.9rem; }
-
-    .form-group { margin-bottom: 18px; }
-    label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 0.9rem; color: var(--dark); }
-    input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; }
-    input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 5px rgba(0,86,179,0.3); }
-    
-    /* Estilo para deixar a opção ocupada desabilitada e cinza */
-    option:disabled {
-      color: #aaa !important;
-      background-color: #e9e9e9 !important;
-    }
-
-    .photo-tip { font-size: 0.8rem; color: #555; margin-top: 5px; display: block; background: #eef5fc; padding: 8px; border-radius: 6px; border-left: 3px solid var(--primary); }
-    .pix-notice { background: #e8f5e9; border: 1px solid #c8e6c9; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; color: #2e7d32; display: flex; align-items: center; gap: 10px; }
-    .pix-notice i { font-size: 1.2rem; }
-
-    .btn-submit { width: 100%; padding: 16px; background: var(--secondary); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .btn-submit:hover { background: var(--secondary-hover); }
-    .btn-submit:disabled { background: #999 !important; cursor: not-allowed !important; opacity: 0.7; }
-
-    .whatsapp-btn { position: fixed; bottom: 20px; right: 20px; background: var(--secondary); color: white; border-radius: 50px; padding: 12px 20px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; transition: transform 0.2s; }
-    .whatsapp-btn:hover { transform: scale(1.05); }
-
-    footer { text-align: center; padding: 25px; font-size: 0.85rem; color: var(--gray); margin-top: 20px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MF Higienização - DF</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#0056b3;--primary-dark:#003b7a;--secondary:#25d366;--secondary-hover:#1eb956;--accent:#f39c12;--dark:#1a252f;--light:#f4f7f6;--gray:#666}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
+body{background:var(--light);color:#333;line-height:1.6;padding-bottom:80px}
+header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;text-align:center;padding:45px 20px;border-bottom-left-radius:20px;border-bottom-right-radius:20px}
+header h1{font-size:2.2rem;font-weight:800} header p{opacity:.95;max-width:600px;margin:10px auto 20px}
+.badge{background:rgba(255,255,255,.2);padding:5px 15px;border-radius:20px;font-size:.85rem;display:inline-block}
+.container{max-width:800px;margin:0 auto;padding:20px}
+.services,.gallery-section,.testimonials,.booking-section{background:#fff;padding:25px;border-radius:12px;margin-bottom:30px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+.services h2,.gallery-section h2,.testimonials h2{text-align:center;color:var(--primary);margin-bottom:20px}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.service-card{background:#eef5fc;padding:18px;border-radius:10px;border-left:4px solid var(--primary);text-align:center}
+.price{font-weight:bold;color:var(--secondary-hover)}
+.booking-section{border-top:5px solid var(--primary)}.sub{text-align:center;color:var(--gray);margin-bottom:20px;font-size:.9rem}
+.form-group{margin-bottom:18px} label{display:block;font-weight:bold;margin-bottom:6px;font-size:.9rem}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid #ccc;border-radius:8px;font-size:1rem}
+input:focus,select:focus{border-color:var(--primary);box-shadow:0 0 5px rgba(0,86,179,.3)}
+option:disabled{color:#aaa!important;background:#e9e9e9!important}
+.btn-submit{width:100%;padding:16px;background:var(--secondary);color:#fff;border:none;border-radius:8px;font-size:1.1rem;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+.btn-submit:disabled{background:#999!important}
+.pix-notice{background:#e8f5e9;border:1px solid #c8e6c9;padding:12px;border-radius:8px;margin-bottom:20px;font-size:.85rem;color:#2e7d32;display:flex;gap:10px;align-items:center}
+.photo-tip{font-size:.8rem;background:#eef5fc;padding:8px;border-radius:6px;border-left:3px solid var(--primary);margin-top:5px;display:block}
+#preview{width:100%;max-height:200px;object-fit:cover;border-radius:8px;margin-top:10px;display:none;border:2px solid #ddd}
+.whatsapp-btn{position:fixed;bottom:20px;right:20px;background:var(--secondary);color:#fff;border-radius:50px;padding:12px 20px;font-weight:bold;text-decoration:none;display:flex;gap:10px;box-shadow:0 4px 15px rgba(0,0,0,.2);z-index:1000}
+footer{text-align:center;padding:25px;color:var(--gray);font-size:.85rem}
+</style>
 </head>
 <body>
-
 <header>
-  <span class="badge">📍 Atendimento em Todo o DF</span>
-  <h1>MF Higienização</h1>
-  <p>Elimine até 99,9% de ácaros, fungos e sujeiras profundas dos seus estofados e veículos com atendimento no conforto da sua casa.</p>
+<span class="badge">📍 Atendimento em Todo o DF</span>
+<h1>MF Higienização</h1>
+<p>Elimine até 99,9% de ácaros, fungos e sujeiras profundas com atendimento em casa.</p>
 </header>
-
 <div class="container">
+<div class="services"><h2>Nossos Serviços</h2><div class="service-grid">
+<div class="service-card"><i class="fa-solid fa-couch"></i><h3>Sofá</h3><div class="price">A partir de R$ 120</div></div>
+<div class="service-card"><i class="fa-solid fa-bed"></i><h3>Colchão</h3><div class="price">A partir de R$ 100</div></div>
+<div class="service-card"><i class="fa-solid fa-car"></i><h3>Automotivo</h3><div class="price">A partir de R$ 150</div></div>
+<div class="service-card"><i class="fa-solid fa-chair"></i><h3>Poltronas</h3><div class="price">A partir de R$ 70</div></div>
+</div></div>
 
-  <div class="features">
-    <div class="feature-card">
-      <i class="fa-solid fa-bolt"></i>
-      <h3>Secagem Rápida</h3>
-      <p>Produtos profissionais de alta tecnologia para uso imediato.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-shield-halved"></i>
-      <h3>Saúde & Proteção</h3>
-      <p>Livre-se de maus odores, ácaros e crises alérgicas.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-house-user"></i>
-      <h3>Atendimento Domiciliar</h3>
-      <p>Levamos toda a estrutura técnica até a sua residência.</p>
-    </div>
-  </div>
-
-  <div class="services">
-    <h2>Nossos Serviços & Preços</h2>
-    <div class="service-grid">
-      <div class="service-card">
-        <i class="fa-solid fa-couch"></i>
-        <h3>Sofá</h3>
-        <div class="price">A partir de R$ 120</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-bed"></i>
-        <h3>Colchão</h3>
-        <div class="price">A partir de R$ 100</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-car"></i>
-        <h3>Automotivo</h3>
-        <div class="price">A partir de R$ 150</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-chair"></i>
-        <h3>Poltronas</h3>
-        <div class="price">A partir de R$ 70</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="loyalty-card">
-    <i class="fa-solid fa-gem"></i>
-    <h3>Clube Fidelidade MF</h3>
-    <p>Agendou conosco? Você ganha <strong>15% DE DESCONTO</strong> no seu próximo serviço ou indica um amigo e ganha <strong>R$ 20 de cashback</strong> via Pix!</p>
-    <span class="loyalty-badge">🎁 Bônus Exclusivo pós-atendimento</span>
-  </div>
-
-  <div class="gallery-section">
-    <h2>Resultados Reais</h2>
-    <p class="gallery-sub">Veja a transformação nos estofados dos nossos clientes</p>
-    <div class="comparison-grid">
-      <div class="comparison-card">
-        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80" alt="Sofá">
-        <h4>Sofá Renovado</h4>
-        <p>Remoção completa de manchas profundas e odores.</p>
-      </div>
-      <div class="comparison-card">
-        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="Carro">
-        <h4>Higienização Automotiva</h4>
-        <p>Bancos automotivos limpos e livres de ácaros e poeira.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="testimonials">
-    <h2>O que nossos clientes dizem</h2>
-    
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"Serviço impecável! Meu colchão estava com marcas antigas de suor e ficou branquinho de novo. Super recomendo!"</p>
-      <div class="author">— Carlos Eduardo, Taguatinga (DF)</div>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"Levaram todos os equipamentos na minha casa, foram super cuidadosos com o piso e o sofá secou muito rápido."</p>
-      <div class="author">— Juliana Ribeiro, Águas Claras (DF)</div>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"Fiz a higienização interna do meu carro e parecia que tinha acabado de sair da concessionária. Excelente trabalho!"</p>
-      <div class="author">— Lucas Mendes, Guará (DF)</div>
-    </div>
-  </div>
-
-  <div class="booking-section" id="agendar">
-    <h2>Agendar Atendimento</h2>
-    <p class="sub">Preencha os dados abaixo para solicitar a sua reserva</p>
-
-    <div class="pix-notice">
-      <i class="fa-solid fa-circle-info"></i>
-      <span><strong>Aviso importante:</strong> O limite é de até 4 agendamentos diários. Após o envio, você será direcionado ao WhatsApp para confirmar o sinal Pix.</span>
-    </div>
-
-    <form id="formAgendamento">
-      <div class="form-group">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" required placeholder="Digite seu nome">
-      </div>
-
-      <div class="form-group">
-        <label for="telefone">WhatsApp para Contato:</label>
-        <input type="tel" id="telefone" required placeholder="(61) 98679-1580">
-      </div>
-
-      <div class="form-group">
-        <label for="servico">Serviço Desejado:</label>
-        <select id="servico" required>
-          <option value="">Selecione um serviço...</option>
-          <option value="Higienização de Sofá">Higienização de Sofá (A partir de R$ 120)</option>
-          <option value="Limpeza de Colchão">Limpeza de Colchão (A partir de R$ 100)</option>
-          <option value="Higienização Automotiva">Higienização Automotiva (A partir de R$ 150)</option>
-          <option value="Poltronas e Cadeiras">Poltronas e Cadeiras (A partir de R$ 70)</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="tecido">Tipo de Tecido do Estofado / Veículo:</label>
-        <select id="tecido" required>
-          <option value="">Selecione o tecido...</option>
-          <option value="Suede">Suede / Veludo</option>
-          <option value="Linho">Linho / Algodão</option>
-          <option value="Corino / Couro Sintético">Corino / Couro Sintético</option>
-          <option value="Courinho Automotivo">Tecido Automotivo Padrão</option>
-          <option value="Outro">Outro / Não sei informar</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="foto">Foto do Estofado (Opcional):</label>
-        <input type="file" id="foto" accept="image/*" capture="camera">
-        <span class="photo-tip"><i class="fa-solid fa-camera"></i> <strong>Dica:</strong> A foto é opcional para agendar. Caso não envie agora, <strong>por favor envie a foto no WhatsApp</strong> logo após clicar no botão abaixo!</span>
-      </div>
-
-      <div class="form-group">
-        <label for="data">Data Desejada:</label>
-        <input type="date" id="data" required>
-      </div>
-
-      <div class="form-group">
-        <label for="horario">Horário Desejado:</label>
-        <select id="horario" required>
-          <option value="">Selecione a data primeiro...</option>
-          <option value="08:00">08:00</option>
-          <option value="10:00">10:00</option>
-          <option value="12:00">12:00 (Almoço Express)</option>
-          <option value="14:00">14:00</option>
-          <option value="16:00">16:00</option>
-        </select>
-      </div>
-
-      <button type="submit" id="btnSubmit" class="btn-submit">
-        <i class="fa-brands fa-whatsapp"></i> Solicitar Reserva & Enviar Sinal Pix
-      </button>
-    </form>
-  </div>
-
+<div class="booking-section">
+<h2>Agendar Atendimento</h2><p class="sub">100% offline - dados salvos no seu navegador</p>
+<div class="pix-notice"><i class="fa-solid fa-circle-info"></i><span><strong>Limite:</strong> 4 agendamentos por dia. Foto vai em Base64.</span></div>
+<form id="formAgendamento">
+<div class="form-group"><label>Nome:</label><input type="text" id="nome" required placeholder="Seu nome"></div>
+<div class="form-group"><label>WhatsApp:</label><input type="tel" id="telefone" required placeholder="(61) 98679-1580"></div>
+<div class="form-group"><label>Serviço:</label><select id="servico" required><option value="">Selecione...</option><option value="Sofá">Sofá - R$120</option><option value="Colchão">Colchão - R$100</option><option value="Automotivo">Automotivo - R$150</option><option value="Poltronas">Poltronas - R$70</option></select></div>
+<div class="form-group"><label>Tecido:</label><select id="tecido" required><option value="">Selecione...</option><option value="Suede">Suede / Veludo</option><option value="Linho">Linho / Algodão</option><option value="Corino">Corino / Couro Sintético</option><option value="Automotivo">Tecido Automotivo</option><option value="Outro">Outro</option></select></div>
+<div class="form-group"><label>Foto (Base64):</label><input type="file" id="foto" accept="image/*" capture="camera"><span class="photo-tip"><i class="fa-solid fa-camera"></i> Foto convertida para Base64 automaticamente. Tamanho final: <span id="sizeInfo">0 KB</span></span><img id="preview"></div>
+<div class="form-group"><label>Data:</label><input type="date" id="data" required></div>
+<div class="form-group"><label>Horário:</label><select id="horario" required><option value="">Selecione a data primeiro...</option><option value="08:00">08:00</option><option value="10:00">10:00</option><option value="12:00">12:00</option><option value="14:00">14:00</option><option value="16:00">16:00</option></select></div>
+<button type="submit" id="btnSubmit" class="btn-submit"><i class="fa-brands fa-whatsapp"></i> Confirmar no WhatsApp</button>
+</form>
 </div>
-
-<a href="https://wa.me/5561986791580" target="_blank" class="whatsapp-btn">
-  <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> Falar Direto
-</a>
-
-<footer>
-  <p>© MF Higienização - Atendimento Especializado no DF</p>
-</footer>
+</div>
+<a href="https://wa.me/5561986791580" class="whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> Falar Direto</a>
+<footer>© MF Higienização - DF</footer>
 
 <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-  }
+const meuWhatsapp = "5561986791580";
+document.getElementById('data').min = new Date().toISOString().split('T')[0];
+let fotoBase64Final = "";
 
-  var baseUrl = "https://script.google.com/macros/s/AKfycbxqDFNK7wcW9gJj0YZtWWxS_SIA4PLaIgERMlLyZV6hvdyqqJ-l1CJMlJTjd4Z7WFGp/exec";
-  var meuWhatsapp = "5561986791580";
-
-  // Função para verificar se o horário já foi escolhido anteriormente
-  document.getElementById('data').addEventListener('change', function() {
-    var dataEscolhida = this.value;
-    var selectHorario = document.getElementById('horario');
-    
-    // Pega do armazenamento local do navegador os horários salvos
-    var agendamentosExistentes = JSON.parse(localStorage.getItem('mf_agendamentos') || '[]');
-
-    // Reseta todas as opções para o estado normal
-    Array.from(selectHorario.options).forEach(function(opt) {
-      if (opt.value !== "") {
-        opt.disabled = false;
-        opt.innerText = opt.value;
-      }
-    });
-
-    if (!dataEscolhida) return;
-
-    // Procura por horários agendados na mesma data
-    agendamentosExistentes.forEach(function(item) {
-      if (item.data === dataEscolhida) {
-        Array.from(selectHorario.options).forEach(function(opt) {
-          if (opt.value === item.horario) {
-            opt.disabled = true; // Deixa o horário desabilitado/cinza
-            opt.innerText = opt.value + " (Indisponível - Já Escolhido)";
-          }
-        });
-      }
-    });
-  });
-
-  document.getElementById('formAgendamento').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    var btn = document.getElementById('btnSubmit');
-    
-    // Trava imediatamente o botão e coloca a cor cinza
-    btn.disabled = true;
-    btn.style.pointerEvents = 'none';
-    btn.style.backgroundColor = '#999';
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Direcionando para o WhatsApp...';
-
-    var nome = document.getElementById('nome').value;
-    var telefone = document.getElementById('telefone').value;
-    var servico = document.getElementById('servico').value;
-    var tecido = document.getElementById('tecido').value;
-    var dataBruta = document.getElementById('data').value;
-    var horario = document.getElementById('horario').value;
-
-    var partesData = dataBruta.split('-');
-    var dataFormatada = partesData[2] + '/' + partesData[1] + '/' + partesData[0];
-
-    // Guarda localmente que o horário foi preenchido
-    var agendamentosExistentes = JSON.parse(localStorage.getItem('mf_agendamentos') || '[]');
-    agendamentosExistentes.push({ data: dataBruta, horario: horario });
-    localStorage.setItem('mf_agendamentos', JSON.stringify(agendamentosExistentes));
-
-    var produtoTecnico = "";
-    if (tecido === 'Suede') {
-      produtoTecnico = "Shampoo neutro de baixa espumação + escovação ultra-macia.";
-    } else if (tecido === 'Linho') {
-      produtoTecnico = "Bactericida com controle de pH balanceado.";
-    } else if (tecido === 'Corino / Couro Sintético') {
-      produtoTecnico = "Limpador específico sintético + Hidratante de couro.";
-    } else if (tecido === 'Courinho Automotivo') {
-      produtoTecnico = "Extração a vácuo com multi-ação antimofo.";
-    } else {
-      produtoTecnico = "Avaliação in loco para definir o tensoativo profissional.";
+// Bloqueio de horário via localStorage (tudo no index)
+document.getElementById('data').addEventListener('change', function(){
+  const data = this.value;
+  const select = document.getElementById('horario');
+  const lista = JSON.parse(localStorage.getItem('mf_agendamentos')||'[]');
+  Array.from(select.options).forEach(o=>{ if(o.value) {o.disabled=false; o.textContent=o.value} });
+  if(!data) return;
+  lista.forEach(item=>{
+    if(item.data===data){
+      Array.from(select.options).forEach(o=>{
+        if(o.value===item.horario){ o.disabled=true; o.textContent=o.value+" (Indisponível)"; }
+      });
     }
-
-    // Envio rápido em segundo plano usando Image (não trava a página)
-    var img = new Image();
-    img.src = baseUrl + "?nome=" + encodeURIComponent(nome) +
-              "&telefone=" + encodeURIComponent(telefone) +
-              "&servico=" + encodeURIComponent(servico + " (" + tecido + ")") +
-              "&data=" + encodeURIComponent(dataFormatada) +
-              "&horario=" + encodeURIComponent(horario);
-
-    // Redireciona para o WhatsApp
-    setTimeout(function() {
-      redirecionarWhatsapp(nome, telefone, servico, tecido, produtoTecnico, dataFormatada, horario, meuWhatsapp);
-    }, 300);
   });
+});
 
-  function redirecionarWhatsapp(nome, telefone, servico, tecido, produtoTecnico, data, horario, numero) {
-    var mensagem = "Olá! Gostaria de confirmar o agendamento na *MF Higienização*:%0A%0A" +
-                   "👤 *Nome:* " + encodeURIComponent(nome) + "%0A" +
-                   "📱 *WhatsApp:* " + encodeURIComponent(telefone) + "%0A" +
-                   "🧽 *Serviço:* " + encodeURIComponent(servico) + "%0A" +
-                   "🧵 *Tecido Informado:* " + encodeURIComponent(tecido) + "%0A" +
-                   "🧪 *[USO INTERNO - PRODUTO INDICADO]:* " + encodeURIComponent(produtoTecnico) + "%0A" +
-                   "📅 *Data:* " + encodeURIComponent(data) + "%0A" +
-                   "⏰ *Horário:* " + encodeURIComponent(horario) + "%0A%0A" +
-                   "📷 *Obs:* Fiz o agendamento no site e estou enviando a foto do estofado por aqui!%0A" +
-                   "💳 *Solicito a chave Pix para envio do sinal de confirmação da reserva.*";
+// Converte para Base64 comprimido e mostra preview
+document.getElementById('foto').addEventListener('change', async function(){
+  const file = this.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const MAX = 800;
+      let w = img.width, h = img.height;
+      if(w>MAX){ h*=MAX/w; w=MAX; }
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      fotoBase64Final = canvas.toDataURL('image/jpeg',0.6);
+      document.getElementById('preview').src = fotoBase64Final;
+      document.getElementById('preview').style.display='block';
+      document.getElementById('sizeInfo').textContent = Math.round(fotoBase64Final.length/1024)+" KB em Base64";
+      console.log("BASE64 GERADA:", fotoBase64Final.substring(0,100)+"...");
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+});
 
-    window.location.href = "https://wa.me/" + numero + "?text=" + mensagem;
-  }
+document.getElementById('formAgendamento').addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = document.getElementById('btnSubmit');
+  btn.disabled=true;
+  btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Indo pro WhatsApp...';
+
+  const nome = document.getElementById('nome').value;
+  const tel = document.getElementById('telefone').value;
+  const serv = document.getElementById('servico').value;
+  const tecido = document.getElementById('tecido').value;
+  const dataBruta = document.getElementById('data').value;
+  const hora = document.getElementById('horario').value;
+  const [ano,mes,dia] = dataBruta.split('-');
+  const dataF = `${dia}/${mes}/${ano}`;
+
+  // Salva tudo junto no localStorage, incluindo a base64
+  const lista = JSON.parse(localStorage.getItem('mf_agendamentos')||'[]');
+  lista.push({data:dataBruta,horario:hora,nome:nome,servico:serv,base64:fotoBase64Final});
+  localStorage.setItem('mf_agendamentos', JSON.stringify(lista));
+  localStorage.setItem('ultima_base64', fotoBase64Final); // fácil de copiar no console
+
+  const msg = `Olá! Agendamento MF:%0A%0A👤 *Nome:* ${encodeURIComponent(nome)}%0A📱 *Tel:* ${encodeURIComponent(tel)}%0A🧽 *Serviço:* ${encodeURIComponent(serv)}%0A🧵 *Tecido:* ${encodeURIComponent(tecido)}%0A📅 *Data:* ${encodeURIComponent(dataF)}%0A⏰ *Hora:* ${encodeURIComponent(hora)}%0A%0A📷 *Foto em Base64:* ${fotoBase64Final? 'Anexada abaixo, vou enviar a imagem aqui no zap' : 'Sem foto'}%0A💳 *Pix para sinal?*`;
+
+  setTimeout(()=>{
+    window.location.href = `https://wa.me/${meuWhatsapp}?text=${msg}`;
+    btn.disabled=false;
+    btn.innerHTML='<i class="fa-brands fa-whatsapp"></i> Confirmar no WhatsApp';
+  },500);
+});
 </script>
-
 </body>
 </html>
