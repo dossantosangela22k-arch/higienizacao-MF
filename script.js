@@ -3,7 +3,7 @@
    1. CONFIGURAÇÕES & VARIÁVEIS GERAIS
    ========================================================================== */
 // Número do WhatsApp da MF Higienização (Código do País 55 + DDD + Número)
-const NUMERO_WHATSAPP = "5561999999999"; 
+const NUMERO_WHATSAPP = "5561986791580"; 
 
 // Mapeamento automático de Produtos Recomendados para cada tipo de Estofado
 const PRODUTOS_RECOMENDADOS = {
