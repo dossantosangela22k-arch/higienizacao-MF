@@ -211,7 +211,7 @@ header {
 }
 
 /* ==========================================================================
-   SEÇÃO ANTES & DEPOIS (SVG)
+   SEÇÃO ANTES & DEPOIS (FOTO REAL)
    ========================================================================== */
 .proof-section {
   text-align: center;
@@ -234,7 +234,7 @@ header {
   border: 2px solid #e2e8f0;
 }
 
-.ba-svg-display {
+.ba-img {
   width: 100%;
   height: auto;
   display: block;
