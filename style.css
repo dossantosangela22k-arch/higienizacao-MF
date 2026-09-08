@@ -1,375 +1,332 @@
-
-/* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS (DESIGN SYSTEM)
-   ========================================================================== */
-:root {
-  --primary: #0284c7;
-  --primary-dark: #0369a1;
-  --success: #16a34a;
-  --success-dark: #15803d;
-  --danger: #ef4444;
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-color: #1e293b;
-  --text-muted: #64748b;
-  --border-color: #cbd5e1;
-  --font-base: 1rem;
-}
-
+/* RESET BÁSICO E CONFIGURAÇÕES GERAIS */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-  font-size: var(--font-base);
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.5;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
 }
 
-main {
-  flex: 1;
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px;
 }
 
-/* ==========================================================================
-   2. ACESSIBILIDADE E MODO ALTO CONTRASTE
-   ========================================================================== */
-body.high-contrast {
-  --bg-color: #000000;
-  --card-bg: #121212;
-  --text-color: #ffffff;
-  --text-muted: #e2e8f0;
-  --primary: #ffff00;
-  --primary-dark: #ffd700;
-  --border-color: #ffffff;
-}
-
-body.high-contrast header,
-body.high-contrast .booking-section,
-body.high-contrast .tracking-card,
-body.high-contrast .tech-card,
-body.high-contrast .price-card,
-body.high-contrast .testimonial-card {
-  background: var(--card-bg);
-  border: 2px solid #ffffff;
-  color: #ffffff;
-}
-
-body.high-contrast .hero {
-  background: #121212;
-  color: #ffff00;
-  border-bottom: 2px solid #ffffff;
-}
-
-body.high-contrast button {
-  border: 2px solid #ffffff !important;
-}
-
-/* ==========================================================================
-   3. CABEÇALHO (NAVBAR & CONTROLES DE ACESSIBILIDADE)
-   ========================================================================== */
+/* CABEÇALHO */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 5%;
-  background: var(--card-bg);
-  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.logo-area img {
-  max-height: 50px;
+.header-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.site-logo-svg {
+  height: 48px;
   width: auto;
   display: block;
 }
 
-.accessibility-controls {
-  display: flex;
-  gap: 0.4rem;
-}
-
 .accessibility-controls button {
-  background: #e2e8f0;
-  color: #0f172a;
-  border: none;
-  padding: 0.5rem 0.8rem;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: background 0.2s;
+  font-weight: 600;
+  margin-left: 4px;
 }
 
 .accessibility-controls button:hover {
-  background: #cbd5e1;
+  background: #e2e8f0;
 }
 
-/* ==========================================================================
-   4. HERO SECTION
-   ========================================================================== */
+/* HERO SECTION */
 .hero {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  padding: 40px 20px;
   text-align: center;
-  padding: 3rem 1.5rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white;
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  line-height: 1.3;
 }
 
 .hero p {
-  font-size: 1.15rem;
-  max-width: 700px;
-  margin: 0 auto;
+  font-size: 1rem;
   opacity: 0.95;
 }
 
-/* ==========================================================================
-   5. FORMULÁRIO DE AGENDAMENTO AUTOMÁTICO
-   ========================================================================== */
-.booking-section {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: var(--card-bg);
-  padding: 2rem;
+/* CARDS E FORMULÁRIOS */
+.card, .step-card {
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-}
-
-.booking-section h2 {
-  font-size: 1.4rem;
-  color: var(--primary-dark);
-  margin-bottom: 1.2rem;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
 }
 
 .form-group {
-  margin-bottom: 1.2rem;
+  margin-bottom: 16px;
   text-align: left;
 }
 
 .form-group label {
   display: block;
-  font-weight: bold;
-  margin-bottom: 0.4rem;
-  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #334155;
 }
 
-.form-group input, 
-.form-group select {
+.form-group input, .form-group select {
   width: 100%;
-  padding: 0.85rem;
-  border: 1px solid var(--border-color);
+  padding: 12px;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
   font-size: 1rem;
-  background-color: var(--card-bg);
-  color: var(--text-color);
 }
 
-.form-group input:focus,
-.form-group select:focus {
-  outline: 2px solid var(--primary);
-  border-color: transparent;
-}
-
-/* LGPD CHECKBOX */
-.checkbox-lgpd {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  margin-top: 1rem;
-}
-
-.checkbox-lgpd input[type="checkbox"] {
-  width: auto;
-  margin-top: 0.2rem;
-  cursor: pointer;
-}
-
-/* RESULTADO DA ANÁLISE POR IA */
-#ai-result {
-  background-color: #f0f9ff;
-  border-left: 4px solid var(--primary);
-  padding: 1.2rem;
-  border-radius: 8px;
-  margin-top: 1.5rem;
-}
-
-.price-tag {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--success);
-  margin: 0.5rem 0;
-}
-
-.product-badge {
-  background: #e0f2fe;
-  color: var(--primary-dark);
-  padding: 0.8rem;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
-
-/* ==========================================================================
-   6. BOTÕES
-   ========================================================================== */
-.btn-primary, 
-.btn-success, 
-.btn-danger {
+/* BOTÕES */
+.btn-primary, .btn-success, .btn-danger {
   width: 100%;
-  padding: 1rem;
+  padding: 14px;
   border: none;
   border-radius: 8px;
+  font-size: 1rem;
   font-weight: bold;
-  font-size: 1.1rem;
   cursor: pointer;
-  transition: transform 0.1s, background-color 0.2s;
-  display: block;
-  text-align: center;
+  transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: white;
+  background-color: #0284c7;
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-dark);
+  background-color: #0369a1;
 }
 
 .btn-success {
-  background-color: var(--success);
-  color: white;
+  background-color: #16a34a;
+  color: #ffffff;
+  margin-top: 12px;
 }
 
 .btn-success:hover {
-  background-color: var(--success-dark);
+  background-color: #15803d;
 }
 
 .btn-danger {
-  background-color: var(--danger);
-  color: white;
+  background-color: #dc2626;
+  color: #ffffff;
 }
 
-.btn-primary:active, 
-.btn-success:active {
-  transform: scale(0.98);
+/* DESTAQUES DE PREÇO E PAGAMENTO */
+.price-tag {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0284c7;
+  margin: 10px 0;
 }
 
-/* ==========================================================================
-   7. COMPONENTES DE RASTREAMENTO GPS EM TEMPO REAL & PAINEL DO TÉCNICO
-   ========================================================================== */
-.tracking-card, 
-.tech-card {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  text-align: center;
-}
-
-.status-badge {
+.badge-info {
+  background: #e0f2fe;
+  color: #0369a1;
   display: inline-block;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 1rem;
-  margin: 15px 0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.status-waiting {
-  background-color: #fef08a;
-  color: #854d0e;
+.payment-box {
+  background: #f8fafc;
+  border: 1px stroke #e2e8f0;
+  border-left: 4px solid #0284c7;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  text-align: left;
 }
 
-.status-ontheway {
-  background-color: #bbf7d0;
-  color: #166534;
-  animation: pulse 1.5s infinite;
+.payment-box h4 {
+  margin-bottom: 8px;
+  color: #0f172a;
 }
 
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
+.pix-key {
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px dashed #cbd5e1;
+  margin: 8px 0;
 }
 
-/* ==========================================================================
-   8. ANTES E DEPOIS / PROVA SOCIAL / FOOTER
-   ========================================================================== */
+.checkbox-lgpd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  margin: 16px 0;
+  text-align: left;
+}
+
+/* SEÇÃO ANTES & DEPOIS (SVG) */
 .proof-section {
   text-align: center;
-  padding: 3rem 1rem;
+  margin: 40px 0;
 }
 
 .proof-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #0f172a;
+  margin-bottom: 6px;
 }
 
-.ba-img {
-  width: 100%;
+.before-after-card {
+  position: relative;
   max-width: 650px;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e2e8f0;
+}
+
+.ba-svg-display {
+  width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-footer {
+.ba-tags {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  z-index: 10;
+}
+
+.ba-tag {
+  padding: 6px 12px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ba-tag.before {
+  background-color: rgba(220, 38, 38, 0.9);
+}
+
+.ba-tag.after {
+  background-color: rgba(22, 163, 74, 0.9);
+}
+
+/* BENEFÍCIOS */
+.benefits-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+
+.benefit-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
   text-align: center;
-  padding: 1.5rem;
-  background: #0f172a;
-  color: #94a3b8;
-  font-size: 0.85rem;
-  margin-top: auto;
 }
 
-/* UTILITÁRIO DE EXIBIÇÃO */
+.benefit-card .icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+/* RASTREAMENTO E STATUS */
+.status-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.status-waiting {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* UTILITÁRIOS */
 .hidden {
   display: none !important;
 }
 
-/* ==========================================================================
-   9. RESPONSIVIDADE (MOBILE FIRST ADJUSTMENTS)
-   ========================================================================== */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero h1 {
-    font-size: 1.75rem;
-  }
-
-  .booking-section, 
-  .tracking-card, 
-  .tech-card {
-    margin: 1rem;
-    padding: 1.25rem;
-  }
-}.site-logo {
-  max-height: 55px;
-  width: auto;
-  display: block;
+.divider {
+  border: 0;
+  height: 1px;
+  background: #e2e8f0;
+  margin: 20px 0;
 }
 
+/* RODAPÉ */
+footer {
+  background: #0f172a;
+  color: #94a3b8;
+  text-align: center;
+  padding: 24px;
+  font-size: 0.875rem;
+  margin-top: 40px;
+}
+
+/* MODO ALTO CONTRASTE */
+body.high-contrast {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.high-contrast .card,
+body.high-contrast header,
+body.high-contrast .benefit-card {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.high-contrast button {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
