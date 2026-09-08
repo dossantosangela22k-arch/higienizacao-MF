@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const increaseFontBtn = document.getElementById('increase-font');
   const decreaseFontBtn = document.getElementById('decrease-font');
   
-  let currentFontSize = 100; // Porcentagem inicial da fonte
+  let currentFontSize = 100;
 
   if (toggleContrastBtn) {
     toggleContrastBtn.addEventListener('click', () => {
@@ -30,7 +30,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. SIMULAÇÃO DE ORÇAMENTO POR FOTO
+  // 2. SISTEMA DE GERENCIAMENTO DE HORÁRIOS E OCUPAÇÃO
+  const dataInput = document.getElementById('data');
+  const horaSelect = document.getElementById('hora');
+
+  // Função para carregar e bloquear horários já agendados para a data escolhida
+  function atualizarHorariosDisponiveis() {
+    if (!dataInput || !horaSelect) return;
+
+    const dataSelecionada = dataInput.value;
+    if (!dataSelecionada) return;
+
+    // Recupera lista de agendamentos salvos
+    const agendamentos = JSON.parse(localStorage.getItem('mf_agendamentos') || '[]');
+
+    // Filtra horários ocupados nessa data específica
+    const horariosOcupados = agendamentos
+      .filter(item => item.data === dataSelecionada)
+      .map(item => item.hora);
+
+    // Atualiza o menu de opções
+    Array.from(horaSelect.options).forEach(option => {
+      if (horariosOcupados.includes(option.value)) {
+        option.disabled = true;
+        option.innerText = `${option.value} (Ocupado)`;
+      } else {
+        option.disabled = false;
+        option.innerText = option.value;
+      }
+    });
+
+    // Se o horário selecionado atualmente estiver ocupado, seleciona a primeira opção válida
+    if (horaSelect.selectedOptions[0]?.disabled) {
+      const primeiraOpcaoValida = Array.from(horaSelect.options).find(opt => !opt.disabled);
+      if (primeiraOpcaoValida) {
+        horaSelect.value = primeiraOpcaoValida.value;
+      }
+    }
+  }
+
+  if (dataInput) {
+    dataInput.addEventListener('change', atualizarHorariosDisponiveis);
+  }
+
+  // 3. SIMULAÇÃO DE ORÇAMENTO POR FOTO
   const btnAnalisar = document.getElementById('btn-analisar');
   const aiResult = document.getElementById('ai-result');
   const fotoSofaInput = document.getElementById('foto-sofa');
@@ -56,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. ENVIO DO FORMULÁRIO E INTEGRAÇÃO WHATSAPP
+  // 4. ENVIO DO FORMULÁRIO, TRAVA DE SEGURANÇA E WHATSAPP
   const formAgendamento = document.getElementById('auto-booking-form');
 
   if (formAgendamento) {
@@ -70,11 +113,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const preco = document.getElementById('ai-price').innerText;
       const servico = document.getElementById('ai-description').innerText;
 
+      // Validação de segurança antes do envio
+      const agendamentos = JSON.parse(localStorage.getItem('mf_agendamentos') || '[]');
+      const jaExiste = agendamentos.some(item => item.data === data && item.hora === hora);
+
+      if (jaExiste) {
+        alert('Ops! Este horário acabou de ser preenchido. Por favor, escolha outro horário.');
+        atualizarHorariosDisponiveis();
+        return;
+      }
+
+      // Salva o novo agendamento para travar o horário
+      agendamentos.push({ data, hora, nome });
+      localStorage.setItem('mf_agendamentos', JSON.stringify(agendamentos));
+
+      // Atualiza a interface
+      atualizarHorariosDisponiveis();
+
       // Gerar ID de Rastreio Único
       const idRastreio = 'MF-' + Math.floor(1000 + Math.random() * 9000);
       const linkRastreio = `${window.location.origin}${window.location.pathname}?rastreio=${idRastreio}`;
 
-      // Montar mensagem formatada para o WhatsApp (61 98679-1580)
+      // Montar mensagem formatada para o WhatsApp
       const mensagem = `Olá, MF Higienização! Fiz um agendamento pelo site:%0A%0A` +
         `👤 *Nome:* ${encodeURIComponent(nome)}%0A` +
         `📱 *WhatsApp:* ${encodeURIComponent(whatsapp)}%0A` +
@@ -85,12 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
         `📍 *Acompanhar Técnico:* ${encodeURIComponent(linkRastreio)}%0A%0A` +
         `Estou enviando o comprovante do Pix em anexo!`;
 
-      // Redireciona para o WhatsApp da MF Higienização
+      // Redireciona para o WhatsApp
       window.open(`https://wa.me/5561986791580?text=${mensagem}`, '_blank');
     });
   }
 
-  // 4. MODO TÉCNICO E MODO RASTREIO VIA PARÂMETROS DA URL
+  // 5. MODO TÉCNICO E MODO RASTREIO VIA PARÂMETROS DA URL
   const urlParams = new URLSearchParams(window.location.search);
   const modo = urlParams.get('modo');
   const rastreioId = urlParams.get('rastreio');
@@ -99,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const trackingScreen = document.getElementById('tracking-screen');
   const bookingContainer = document.getElementById('booking-container');
 
-  // Exibir Painel do Técnico (?modo=tecnico)
   if (modo === 'tecnico' && techPanel) {
     techPanel.classList.remove('hidden');
     if (bookingContainer) bookingContainer.classList.add('hidden');
@@ -153,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Exibir Tela de Rastreio do Cliente (?rastreio=ID)
   if (rastreioId && trackingScreen) {
     trackingScreen.classList.remove('hidden');
     if (bookingContainer) bookingContainer.classList.add('hidden');
@@ -161,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusBadge = document.getElementById('status-badge');
     const trackingInfo = document.getElementById('tracking-info');
 
-    // Checar atualização do status a cada 3 segundos
     setInterval(() => {
       const storedData = localStorage.getItem('tech_location');
       if (storedData) {
