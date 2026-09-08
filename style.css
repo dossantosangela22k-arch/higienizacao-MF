@@ -1,4 +1,6 @@
-/* RESET BÁSICO E CONFIGURAÇÕES GERAIS */
+/* ==========================================================================
+   RESET BÁSICO E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,7 +20,9 @@ body {
   padding: 20px 16px;
 }
 
-/* CABEÇALHO */
+/* ==========================================================================
+   CABEÇALHO & LOGO
+   ========================================================================== */
 header {
   background-color: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -58,7 +62,9 @@ header {
   background: #e2e8f0;
 }
 
-/* HERO SECTION */
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
 .hero {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: #ffffff;
@@ -82,7 +88,9 @@ header {
   opacity: 0.95;
 }
 
-/* CARDS E FORMULÁRIOS */
+/* ==========================================================================
+   CARDS E FORMULÁRIOS
+   ========================================================================== */
 .card, .step-card {
   background: #ffffff;
   border-radius: 12px;
@@ -112,7 +120,9 @@ header {
   font-size: 1rem;
 }
 
-/* BOTÕES */
+/* ==========================================================================
+   BOTÕES
+   ========================================================================== */
 .btn-primary, .btn-success, .btn-danger {
   width: 100%;
   padding: 14px;
@@ -148,7 +158,9 @@ header {
   color: #ffffff;
 }
 
-/* DESTAQUES DE PREÇO E PAGAMENTO */
+/* ==========================================================================
+   DESTAQUES DE PREÇO E PAGAMENTO
+   ========================================================================== */
 .price-tag {
   font-size: 2rem;
   font-weight: bold;
@@ -168,7 +180,7 @@ header {
 
 .payment-box {
   background: #f8fafc;
-  border: 1px stroke #e2e8f0;
+  border: 1px solid #e2e8f0;
   border-left: 4px solid #0284c7;
   padding: 16px;
   border-radius: 8px;
@@ -198,7 +210,9 @@ header {
   text-align: left;
 }
 
-/* SEÇÃO ANTES & DEPOIS (SVG) */
+/* ==========================================================================
+   SEÇÃO ANTES & DEPOIS (SVG)
+   ========================================================================== */
 .proof-section {
   text-align: center;
   margin: 40px 0;
@@ -255,7 +269,9 @@ header {
   background-color: rgba(22, 163, 74, 0.9);
 }
 
-/* BENEFÍCIOS */
+/* ==========================================================================
+   BENEFÍCIOS
+   ========================================================================== */
 .benefits-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -276,7 +292,9 @@ header {
   margin-bottom: 8px;
 }
 
-/* RASTREAMENTO E STATUS */
+/* ==========================================================================
+   RASTREAMENTO E STATUS
+   ========================================================================== */
 .status-badge {
   display: inline-block;
   padding: 8px 16px;
@@ -290,7 +308,9 @@ header {
   color: #92400e;
 }
 
-/* UTILITÁRIOS */
+/* ==========================================================================
+   UTILITÁRIOS
+   ========================================================================== */
 .hidden {
   display: none !important;
 }
@@ -302,7 +322,9 @@ header {
   margin: 20px 0;
 }
 
-/* RODAPÉ */
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
 footer {
   background: #0f172a;
   color: #94a3b8;
@@ -312,15 +334,19 @@ footer {
   margin-top: 40px;
 }
 
-/* MODO ALTO CONTRASTE */
+/* ==========================================================================
+   MODO ALTO CONTRASTE (ACESSIBILIDADE)
+   ========================================================================== */
 body.high-contrast {
   background-color: #000000 !important;
   color: #ffffff !important;
 }
 
 body.high-contrast .card,
+body.high-contrast .step-card,
 body.high-contrast header,
-body.high-contrast .benefit-card {
+body.high-contrast .benefit-card,
+body.high-contrast .payment-box {
   background-color: #121212 !important;
   color: #ffffff !important;
   border-color: #ffffff !important;
