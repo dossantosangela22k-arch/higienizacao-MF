@@ -8,27 +8,39 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO COM A SUA LOGO OFICIAL & CONTROLES DE ACESSIBILIDADE -->
+  <!-- CABEÇALHO COM LOGO E CONTROLES DE ACESSIBILIDADE -->
   <header>
-    <div class="logo-area">
-      <img src="watermarked_img_16133375905750323627.png" alt="Logo MF Higienização" class="site-logo">
-    </div>
-    <div class="accessibility-controls">
-      <button id="toggle-contrast" aria-label="Alto Contraste">Alto Contraste</button>
-      <button id="increase-font" aria-label="Aumentar Fonte">A+</button>
-      <button id="decrease-font" aria-label="Diminuir Fonte">A-</button>
+    <div class="header-container">
+      <div class="logo-area">
+        <!-- Logo oficial ou Representação visual em SVG -->
+        <svg class="site-logo-svg" viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg">
+          <rect width="240" height="60" rx="8" fill="#0284c7" />
+          <path d="M20 40 C 20 20, 35 15, 45 25 C 55 15, 70 20, 70 40 Z" fill="#ffffff" opacity="0.9" />
+          <circle cx="35" cy="22" r="3" fill="#38bdf8" />
+          <circle cx="55" cy="20" r="4" fill="#38bdf8" />
+          <text x="80" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">MF</text>
+          <text x="120" y="38" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#bae6fd">HIGIENIZAÇÃO</text>
+        </svg>
+      </div>
+      <div class="accessibility-controls">
+        <button id="toggle-contrast" aria-label="Alto Contraste">Alto Contraste</button>
+        <button id="increase-font" aria-label="Aumentar Fonte">A+</button>
+        <button id="decrease-font" aria-label="Diminuir Fonte">A-</button>
+      </div>
     </div>
   </header>
 
   <!-- HERO SECTION PERSUASIVA -->
   <section class="hero">
-    <h1>Renove seu Sofá e Elimine até 99,9% de Ácaros e Bactérias</h1>
-    <p>Orçamento instantâneo por foto, agendamento simplificado e acompanhamento do técnico a caminho da sua casa em tempo real.</p>
+    <div class="hero-content">
+      <h1>Renove seu Sofá e Elimine até 99,9% de Ácaros e Bactérias</h1>
+      <p>Orçamento instantâneo por foto, agendamento simplificado e acompanhamento do técnico em tempo real.</p>
+    </div>
   </section>
 
-  <main>
-    <!-- ÁREA DE AGENDAMENTO E ORÇAMENTO (VISÃO DO CLIENTE) -->
-    <div id="booking-container" class="booking-section">
+  <main class="container">
+    <!-- ÁREA DE AGENDAMENTO E ORÇAMENTO -->
+    <section id="booking-container" class="booking-section">
       
       <div class="step-card">
         <h2>Passo 1: Envie a Foto do Estofado</h2>
@@ -39,11 +51,11 @@
         <button type="button" id="btn-analisar" class="btn-primary">🔍 Calcular Valor por Foto</button>
       </div>
 
-      <!-- RESULTADO EXIBIDO PARA O CLIENTE -->
-      <div id="ai-result" class="hidden">
+      <!-- RESULTADO DO CÁLCULO -->
+      <div id="ai-result" class="card hidden">
         <h3>Orçamento Estimado:</h3>
-        <p id="ai-description" class="badge-info"></p>
-        <div id="ai-price" class="price-tag">R$ 0,00</div>
+        <p id="ai-description" class="badge-info">Sofá Retrátil / Reclinável 3 Lugares</p>
+        <div id="ai-price" class="price-tag">R$ 220,00</div>
         
         <hr class="divider">
 
@@ -56,7 +68,7 @@
 
           <div class="form-group">
             <label for="whatsapp">Seu WhatsApp:</label>
-            <input type="tel" id="whatsapp" required placeholder="(61) 98579-1580">
+            <input type="tel" id="whatsapp" required placeholder="(61) 98679-1580">
           </div>
 
           <div class="form-group">
@@ -68,15 +80,19 @@
             <label for="hora">Horário Disponível:</label>
             <select id="hora" required>
               <option value="">Selecione a Data Primeiro...</option>
+              <option value="08:00">08:00</option>
+              <option value="10:00">10:00</option>
+              <option value="14:00">14:00</option>
+              <option value="16:00">16:00</option>
             </select>
           </div>
 
           <!-- DADOS DO PIX E FORMA DE PAGAMENTO -->
           <div class="payment-box">
             <h4>💳 Forma de Pagamento Flexível:</h4>
-            <p><strong>Sinal de Reserva:</strong> R$ 30,00 via Pix para garantir o horário.</p>
-            <p class="pix-key">🔑 <strong>Chave Pix (CNPJ/Telefone):</strong> <code>61985791580</code></p>
-            <p class="payment-note">✨ <strong>O restante do valor (R$ 190,00):</strong> Pode ser pago após o término do serviço via Pix ou <strong>parcelado no cartão de crédito em até 12x</strong>.</p>
+            <p><strong>Sinal de Reserva:</strong> R$ 30,00 via Pix para garantir a agenda.</p>
+            <p class="pix-key">🔑 <strong>Chave Pix (Telefone):</strong> <code>61986791580</code></p>
+            <p class="payment-note">✨ <strong>Restante do valor:</strong> Pode ser pago após a conclusão do serviço via Pix ou <strong>parcelado no cartão de crédito em até 12x</strong>.</p>
           </div>
 
           <div class="checkbox-lgpd">
@@ -87,45 +103,87 @@
           <button type="submit" class="btn-success">✅ Confirmar e Enviar Comprovante no WhatsApp</button>
         </form>
       </div>
-    </div>
+    </section>
 
-    <!-- SEÇÃO ANTES & DEPOIS (PROVA SOCIAL PERSUASIVA) -->
+    <!-- SEÇÃO ANTES & DEPOIS GERADA POR CÓDIGO (SVG) -->
     <section class="proof-section">
       <h2>Transformação Real de Nossos Clientes</h2>
       <p>Veja a diferença da extração profunda de sujeiras e remoção de manchas:</p>
       
       <div class="before-after-card">
-        <div class="ba-tag before">ANTES</div>
-        <div class="ba-tag after">DEPOIS</div>
-        <img src="watermarked_img_7953767486011146418.png" alt="Antes e Depois Limpeza de Sofá" class="ba-img">
+        <div class="ba-tags">
+          <span class="ba-tag before">ANTES (Sujo / Manchado)</span>
+          <span class="ba-tag after">DEPOIS (Higienizado)</span>
+        </div>
+        
+        <!-- Ilustração SVG embutida diretamente no código -->
+        <svg class="ba-svg-display" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lado Esquerdo - ANTES -->
+          <g id="lado-antes">
+            <rect x="0" y="0" width="400" height="400" fill="#78716c" />
+            <!-- Encosto e Assento Sujo -->
+            <rect x="30" y="60" width="340" height="180" rx="20" fill="#a8a29e" />
+            <rect x="30" y="220" width="340" height="120" rx="15" fill="#8d8580" />
+            <!-- Manchas de Sujeira -->
+            <ellipse cx="120" cy="140" rx="45" ry="25" fill="#57534e" opacity="0.7" />
+            <ellipse cx="280" cy="260" rx="60" ry="30" fill="#44403c" opacity="0.8" />
+            <ellipse cx="200" cy="180" rx="35" ry="20" fill="#525252" opacity="0.6" />
+            <circle cx="90" cy="270" r="18" fill="#3f3f46" opacity="0.7" />
+            <!-- Ácaros / Microorganismos simbólicos -->
+            <circle cx="150" cy="120" r="4" fill="#ef4444" />
+            <circle cx="270" cy="250" r="5" fill="#ef4444" />
+            <circle cx="220" cy="270" r="4" fill="#ef4444" />
+          </g>
+
+          <!-- Lado Direito - DEPOIS -->
+          <g id="lado-depois">
+            <rect x="400" y="0" width="400" height="400" fill="#0284c7" />
+            <!-- Encosto e Assento Higienizado -->
+            <rect x="430" y="60" width="340" height="180" rx="20" fill="#e0f2fe" />
+            <rect x="430" y="220" width="340" height="120" rx="15" fill="#bae6fd" />
+            <!-- Brilho / Limpeza -->
+            <path d="M 520 100 L 530 120 L 550 120 L 535 132 L 540 152 L 520 140 L 500 152 L 505 132 L 490 120 L 510 120 Z" fill="#fef08a" opacity="0.9" />
+            <path d="M 680 230 L 687 245 L 702 245 L 690 254 L 694 269 L 680 260 L 666 269 L 670 254 L 658 245 L 673 245 Z" fill="#fef08a" opacity="0.9" />
+            <!-- Bolhas de Higienização -->
+            <circle cx="600" cy="140" r="12" fill="#ffffff" opacity="0.6" />
+            <circle cx="620" cy="120" r="7" fill="#ffffff" opacity="0.8" />
+            <circle cx="480" cy="260" r="10" fill="#ffffff" opacity="0.7" />
+          </g>
+
+          <!-- Linha Divisória -->
+          <line x1="400" y1="0" x2="400" y2="400" stroke="#ffffff" stroke-width="6" stroke-dasharray="8,8" />
+        </svg>
       </div>
     </section>
 
-    <!-- SEÇÃO DE BENEFÍCIOS E GARANTIA -->
+    <!-- SEÇÃO DE BENEFÍCIOS -->
     <section class="benefits-section">
       <div class="benefit-card">
-        <h3>🦠 Higienização Profunda</h3>
-        <p>Eliminação de sujeira impregnada, odores de pets, ácaros, fungos e bactérias.</p>
+        <div class="icon">🦠</div>
+        <h3>Higienização Profunda</h3>
+        <p>Eliminação de sujeira impregnada, odores de pets, ácaros, fungos e bactérias com extratora profissional.</p>
       </div>
       <div class="benefit-card">
-        <h3>⏱️ Secagem Rápida</h3>
-        <p>Produtos de alta tecnologia que garantem secagem rápida sem danificar o tecido.</p>
+        <div class="icon">⏱️</div>
+        <h3>Secagem Rápida</h3>
+        <p>Produtos de alta tecnologia que garantem secagem rápida sem danificar as fibras do tecido.</p>
       </div>
       <div class="benefit-card">
-        <h3>🛡️ Garantia de Satisfação</h3>
-        <p>Se você não gostar do resultado, refazemos o atendimento sem custo adicional.</p>
+        <div class="icon">🛡️</div>
+        <h3>Garantia de Satisfação</h3>
+        <p>Garantimos a máxima remoção de sujeira e manchas suportada pelo tecido do seu estofado.</p>
       </div>
     </section>
 
     <!-- TELA DE RASTREAMENTO DO CLIENTE (?rastreio=ID) -->
-    <div id="tracking-screen" class="tracking-card hidden">
+    <div id="tracking-screen" class="card hidden">
       <h2>🚗 Acompanhe o Técnico ao Vivo</h2>
       <div id="status-badge" class="status-badge status-waiting">Aguardando Horário do Atendimento...</div>
       <p id="tracking-info">O técnico iniciará o deslocamento no horário agendado.</p>
     </div>
 
     <!-- PAINEL DO TÉCNICO RESTRITO (?modo=tecnico) -->
-    <div id="tech-panel" class="tech-card hidden">
+    <div id="tech-panel" class="card hidden">
       <h2>👨‍🔧 Painel de Rota do Técnico</h2>
       <p id="geo-status">Status do GPS: Inativo</p>
       <button id="btn-iniciar-rota" class="btn-primary">🚗 Iniciar Deslocamento ao Cliente</button>
@@ -134,7 +192,10 @@
   </main>
 
   <footer>
-    <p>© 2026 MF Higienização - Todos os direitos reservados.</p>
+    <div class="footer-content">
+      <p>© 2026 MF Higienização - Todos os direitos reservados.</p>
+      <p>Atendimento em Brasília / DF e Entorno | WhatsApp: (61) 98679-1580</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
