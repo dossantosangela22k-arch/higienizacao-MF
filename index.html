@@ -3,18 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MF Higienização - Agendamento & Rastreio Automático</title>
-  <meta name="description" content="Higienização profissional de estofados com agendamento e rastreamento de atendimento em tempo real.">
+  <title>MF Higienização | Higienização Profissional de Estofados</title>
   <link rel="stylesheet" href="style.css">
-  <!-- API do Google Maps para o Rastreamento de Rota -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_GOOGLE_MAPS" async defer></script>
 </head>
 <body>
 
-  <!-- BARRA DE ACESSIBILIDADE E NAVEGAÇÃO -->
-  <header role="banner">
+  <!-- CABEÇALHO COM A SUA LOGO OFICIAL & CONTROLES DE ACESSIBILIDADE -->
+  <header>
     <div class="logo-area">
-      <img src="watermarked_img_13418398039819721309.png" alt="Logo MF Higienização" width="160" height="90">
+      <img src="watermarked_img_16133375905750323627.png" alt="Logo MF Higienização" class="site-logo">
     </div>
     <div class="accessibility-controls">
       <button id="toggle-contrast" aria-label="Alto Contraste">Alto Contraste</button>
@@ -23,102 +20,121 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <!-- HERO SECTION PERSUASIVA -->
+  <section class="hero">
+    <h1>Renove seu Sofá e Elimine até 99,9% de Ácaros e Bactérias</h1>
+    <p>Orçamento instantâneo por foto, agendamento simplificado e acompanhamento do técnico a caminho da sua casa em tempo real.</p>
+  </section>
 
-    <!-- TELA DE RASTREIO (Ativada via link enviado no WhatsApp do cliente ex: ?id=123) -->
-    <section id="tracking-screen" class="hidden">
-      <div class="tracking-card">
-        <h2><i class="fa-solid fa-truck-fast"></i> MF Higienização - Status do Atendimento</h2>
-        <div id="status-badge" class="status-badge status-waiting">Aguardando Horário</div>
-        <p id="tracking-info">Seu atendimento está agendado. Quando o técnico sair para o seu endereço, a rota aparecerá abaixo.</p>
-        
-        <div id="map" style="width: 100%; height: 350px; border-radius: 8px; margin-top: 15px;"></div>
+  <main>
+    <!-- ÁREA DE AGENDAMENTO E ORÇAMENTO (VISÃO DO CLIENTE) -->
+    <div id="booking-container" class="booking-section">
+      
+      <div class="step-card">
+        <h2>Passo 1: Envie a Foto do Estofado</h2>
+        <div class="form-group">
+          <label for="foto-sofa">Selecione ou tire uma foto do seu sofá ou colchão:</label>
+          <input type="file" id="foto-sofa" accept="image/*">
+        </div>
+        <button type="button" id="btn-analisar" class="btn-primary">🔍 Calcular Valor por Foto</button>
       </div>
-    </section>
 
-    <!-- PAINEL DO TÉCNICO (Acessado por você no celular via ?modo=tecnico) -->
-    <section id="tech-panel" class="hidden">
-      <div class="tech-card">
-        <h2>Painel do Técnico (MF Higienização)</h2>
-        <p>Ao sair para o cliente, clique no botão abaixo para ativar a localização ao vivo no mapa do cliente:</p>
-        <button id="btn-iniciar-rota" class="btn-primary" style="background:#25d366; font-size:1.2rem;">🚗 Estou a Caminho do Cliente</button>
-        <button id="btn-finalizar-rota" class="btn-danger hidden" style="margin-top:10px;">✅ Cheguei ao Local / Finalizar</button>
-        <p id="geo-status" style="margin-top:10px; font-weight:bold;"></p>
-      </div>
-    </section>
-
-    <!-- SEÇÃO PRINCIPAL DE AGENDAMENTO -->
-    <section id="booking-container">
-      <section class="hero" aria-labelledby="hero-title">
-        <h1 id="hero-title">Higienização Profissional de Estofados</h1>
-        <p>Envie a foto do seu sofá, a IA calcula o valor e você rastreia o técnico a caminho da sua casa em tempo real.</p>
-      </section>
-
-      <section class="booking-section" aria-labelledby="booking-title">
-        <h2 id="booking-title">Passo 1: Envie a Foto do Estofado</h2>
+      <!-- RESULTADO EXIBIDO PARA O CLIENTE -->
+      <div id="ai-result" class="hidden">
+        <h3>Orçamento Estimado:</h3>
+        <p id="ai-description" class="badge-info"></p>
+        <div id="ai-price" class="price-tag">R$ 0,00</div>
         
+        <hr class="divider">
+
+        <h2>Passo 2: Escolha o Horário de Atendimento</h2>
         <form id="auto-booking-form">
           <div class="form-group">
-            <label for="foto-sofa">Selecione ou tire a foto do seu estofado:</label>
-            <input type="file" id="foto-sofa" accept="image/*" required>
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" required placeholder="Digite seu nome">
           </div>
 
-          <button type="button" id="btn-analisar" class="btn-primary">Analisar Foto com IA</button>
-
-          <div id="ai-result" class="hidden" aria-live="polite">
-            <h3>Orçamento Lido pela IA:</h3>
-            <p id="ai-description"></p>
-            <div class="price-tag" id="ai-price">R$ 0,00</div>
-            <p id="ai-product" class="product-badge"></p>
-
-            <hr style="margin: 20px 0;">
-
-            <h2>Passo 2: Dados e Escolha do Horário</h2>
-            
-            <div class="form-group">
-              <label for="nome">Nome Completo:</label>
-              <input type="text" id="nome" required>
-            </div>
-
-            <div class="form-group">
-              <label for="whatsapp">WhatsApp para Receber o Link de Rastreio:</label>
-              <input type="tel" id="whatsapp" placeholder="(61) 98679-1580" required>
-            </div>
-
-            <div class="form-group">
-              <label for="data">Data Desejada (Segunda a Sábado):</label>
-              <input type="date" id="data" required>
-            </div>
-
-            <div class="form-group">
-              <label for="hora">Horário Disponível (4 vagas por dia):</label>
-              <select id="hora" required>
-                <option value="">Selecione a Data Primeiro...</option>
-              </select>
-            </div>
-
-            <div class="form-group checkbox-lgpd">
-              <input type="checkbox" id="lgpd" required>
-              <label for="lgpd">
-                Concordo com os Termos de Privacidade (LGPD).
-              </label>
-            </div>
-
-            <button type="submit" class="btn-success">Pagar Sinal e Finalizar Agendamento</button>
+          <div class="form-group">
+            <label for="whatsapp">Seu WhatsApp:</label>
+            <input type="tel" id="whatsapp" required placeholder="(61) 98579-1580">
           </div>
+
+          <div class="form-group">
+            <label for="data">Data Desejada:</label>
+            <input type="date" id="data" required>
+          </div>
+
+          <div class="form-group">
+            <label for="hora">Horário Disponível:</label>
+            <select id="hora" required>
+              <option value="">Selecione a Data Primeiro...</option>
+            </select>
+          </div>
+
+          <!-- DADOS DO PIX E FORMA DE PAGAMENTO -->
+          <div class="payment-box">
+            <h4>💳 Forma de Pagamento Flexível:</h4>
+            <p><strong>Sinal de Reserva:</strong> R$ 30,00 via Pix para garantir o horário.</p>
+            <p class="pix-key">🔑 <strong>Chave Pix (CNPJ/Telefone):</strong> <code>61985791580</code></p>
+            <p class="payment-note">✨ <strong>O restante do valor (R$ 190,00):</strong> Pode ser pago após o término do serviço via Pix ou <strong>parcelado no cartão de crédito em até 12x</strong>.</p>
+          </div>
+
+          <div class="checkbox-lgpd">
+            <input type="checkbox" id="lgpd" required>
+            <label for="lgpd">Concordo com os Termos de Privacidade e Proteção de Dados (LGPD).</label>
+          </div>
+
+          <button type="submit" class="btn-success">✅ Confirmar e Enviar Comprovante no WhatsApp</button>
         </form>
-      </section>
+      </div>
+    </div>
 
-      <section class="proof-section">
-        <h2>Resultado Profissional</h2>
-        <img src="watermarked_img_7953767486011146418.png" alt="Antes e Depois da higienização do sofá" class="ba-img" loading="lazy">
-      </section>
+    <!-- SEÇÃO ANTES & DEPOIS (PROVA SOCIAL PERSUASIVA) -->
+    <section class="proof-section">
+      <h2>Transformação Real de Nossos Clientes</h2>
+      <p>Veja a diferença da extração profunda de sujeiras e remoção de manchas:</p>
+      
+      <div class="before-after-card">
+        <div class="ba-tag before">ANTES</div>
+        <div class="ba-tag after">DEPOIS</div>
+        <img src="watermarked_img_7953767486011146418.png" alt="Antes e Depois Limpeza de Sofá" class="ba-img">
+      </div>
     </section>
 
+    <!-- SEÇÃO DE BENEFÍCIOS E GARANTIA -->
+    <section class="benefits-section">
+      <div class="benefit-card">
+        <h3>🦠 Higienização Profunda</h3>
+        <p>Eliminação de sujeira impregnada, odores de pets, ácaros, fungos e bactérias.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>⏱️ Secagem Rápida</h3>
+        <p>Produtos de alta tecnologia que garantem secagem rápida sem danificar o tecido.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>🛡️ Garantia de Satisfação</h3>
+        <p>Se você não gostar do resultado, refazemos o atendimento sem custo adicional.</p>
+      </div>
+    </section>
+
+    <!-- TELA DE RASTREAMENTO DO CLIENTE (?rastreio=ID) -->
+    <div id="tracking-screen" class="tracking-card hidden">
+      <h2>🚗 Acompanhe o Técnico ao Vivo</h2>
+      <div id="status-badge" class="status-badge status-waiting">Aguardando Horário do Atendimento...</div>
+      <p id="tracking-info">O técnico iniciará o deslocamento no horário agendado.</p>
+    </div>
+
+    <!-- PAINEL DO TÉCNICO RESTRITO (?modo=tecnico) -->
+    <div id="tech-panel" class="tech-card hidden">
+      <h2>👨‍🔧 Painel de Rota do Técnico</h2>
+      <p id="geo-status">Status do GPS: Inativo</p>
+      <button id="btn-iniciar-rota" class="btn-primary">🚗 Iniciar Deslocamento ao Cliente</button>
+      <button id="btn-finalizar-rota" class="btn-danger hidden">✅ Finalizar Rota / Cheguei</button>
+    </div>
   </main>
 
-  <footer role="contentinfo">
-    <p>&copy; 2026 MF Higienização. Conforme a LGPD.</p>
+  <footer>
+    <p>© 2026 MF Higienização - Todos os direitos reservados.</p>
   </footer>
 
   <script src="script.js"></script>
